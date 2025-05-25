@@ -12,32 +12,38 @@ import time
 from sqlogging import logging
 from myrtle import bench
 from myrtle.config import log_directory
-from myrtle.agents.fnc_one_step_curiosity import FNCOneStepCuriosity
-from myrtle.worlds.pendulum_discrete_one_hot import PendulumDiscreteOneHot
+from myrtle.agents.fnc_buckettree_ziptie_one_step import FNCBuckettreeZiptieOneStep
+from myrtle.worlds.pendulum import Pendulum
 
 curiosity_scale = 1.0
 exploitation_factor = 2.0
 feature_decay_rate = 1.0
 learning_rate = 0.03
+n_features = 3000
 trace_decay_rate = 0.3
+ziptie_threshold = 3.0
 
 n_loop_steps = 1e6
 n_episodes = 1
 loops_per_second = 8
 speedup = 8
 verbose = True
+buckettree_snapshot_flag = True
+buckettree_snapshot_interval = 900
 fnc_snapshot_flag = True
 fnc_snapshot_interval = 1000
+ziptie_snapshot_flag = True
+ziptie_snapshot_interval = 1100
 
-db_name = f"pendulum_one_hot_fnc_{int(time.time())}"
+db_name = f"pendulum_fnc_{int(time.time())}"
 
 
 def main():
     start_time = time.time()
 
     bench.run(
-        FNCOneStepCuriosity,
-        PendulumDiscreteOneHot,
+        FNCBuckettreeZiptieOneStep,
+        Pendulum,
         log_to_db=True,
         logging_db_name=db_name,
         world_args={
@@ -51,10 +57,16 @@ def main():
             "curiosity_scale": curiosity_scale,
             "exploitation_factor": exploitation_factor,
             "feature_decay_rate": feature_decay_rate,
+            "n_features": n_features,
             "reward_update_rate": learning_rate,
             "trace_decay_rate": trace_decay_rate,
+            "ziptie_threshold": ziptie_threshold,
+            "buckettree_snapshot_flag": buckettree_snapshot_flag,
+            "buckettree_snapshot_interval": buckettree_snapshot_interval,
             "fnc_snapshot_flag": fnc_snapshot_flag,
             "fnc_snapshot_interval": fnc_snapshot_interval,
+            "ziptie_snapshot_flag": ziptie_snapshot_flag,
+            "ziptie_snapshot_interval": ziptie_snapshot_interval,
         },
     )
 

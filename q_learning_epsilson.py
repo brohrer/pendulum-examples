@@ -19,7 +19,7 @@ from myrtle.worlds.pendulum_discrete_one_hot import PendulumDiscreteOneHot
 discount_factor = 0.5
 learning_rate = 0.04
 
-n_loop_steps = 1e10
+n_loop_steps = 1e7
 n_episodes= 1
 loops_per_second = 8
 speedup = 8
