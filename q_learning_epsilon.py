@@ -9,36 +9,28 @@ import time
 from sqlogging import logging
 from myrtle import bench
 from myrtle.config import log_directory
-from myrtle.agents.fnc_ziptie_one_step import FNCZiptieOneStep
-from myrtle.worlds.pendulum_discrete import PendulumDiscrete
+from myrtle.agents.q_learning_eps import QLearningEpsilon
+from myrtle.worlds.pendulum_discrete_one_hot import PendulumDiscreteOneHot
 
-curiosity_scale = 1.0
-exploitation_factor = 2.0
-feature_decay_rate = 1.0
-learning_rate = 0.03
-n_features = 3000
-trace_decay_rate = 0.3
-ziptie_threshold = 3.0
 
-n_loop_steps = 1e6
+discount_factor = 0.5
+learning_rate = 0.04
+
+n_loop_steps = 1e7
 n_episodes = 1
 loops_per_second = 8
 speedup = 2
 verbose = True
-fnc_snapshot_flag = False
-# fnc_snapshot_interval = 1000
-ziptie_snapshot_flag = False
-# ziptie_snapshot_interval = 1100
 
-db_name = f"pendulum_discrete_fnc_{int(time.time())}"
+db_name = f"q_curiosity_pendulum_{int(time.time())}"
 
 
 def main():
     start_time = time.time()
 
     bench.run(
-        FNCZiptieOneStep,
-        PendulumDiscrete,
+        QLearningEpsilon,
+        PendulumDiscreteOneHot,
         log_to_db=True,
         logging_db_name=db_name,
         world_args={
@@ -49,17 +41,8 @@ def main():
             "verbose": verbose,
         },
         agent_args={
-            "curiosity_scale": curiosity_scale,
-            "exploitation_factor": exploitation_factor,
-            "feature_decay_rate": feature_decay_rate,
-            "n_features": n_features,
-            "reward_update_rate": learning_rate,
-            "trace_decay_rate": trace_decay_rate,
-            "ziptie_threshold": ziptie_threshold,
-            "fnc_snapshot_flag": fnc_snapshot_flag,
-            "fnc_snapshot_interval": fnc_snapshot_interval,
-            "ziptie_snapshot_flag": ziptie_snapshot_flag,
-            "ziptie_snapshot_interval": ziptie_snapshot_interval,
+            "discount_factor": discount_factor,
+            "learning_rate": learning_rate,
         },
     )
 

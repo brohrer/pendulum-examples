@@ -20,7 +20,7 @@ learning_rate = 0.04
 n_loop_steps = 1e6
 n_episodes = 1
 loops_per_second = 8
-speedup = 8
+speedup = 2
 verbose = True
 
 db_name = f"q_curiosity_pendulum_{int(time.time())}"

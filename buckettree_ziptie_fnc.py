@@ -23,14 +23,14 @@ ziptie_threshold = 3.0
 n_loop_steps = 1e6
 n_episodes = 1
 loops_per_second = 8
-speedup = 8
+speedup = 2
 verbose = True
-buckettree_snapshot_flag = True
-buckettree_snapshot_interval = 900
-fnc_snapshot_flag = True
-fnc_snapshot_interval = 1000
-ziptie_snapshot_flag = True
-ziptie_snapshot_interval = 1100
+buckettree_snapshot_flag = False
+# buckettree_snapshot_interval = 900
+fnc_snapshot_flag = False
+# fnc_snapshot_interval = 1000
+ziptie_snapshot_flag = False
+# ziptie_snapshot_interval = 1100
 
 db_name = f"pendulum_fnc_{int(time.time())}"
 
