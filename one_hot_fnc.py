@@ -24,7 +24,7 @@ loops_per_second = 8
 speedup = 2
 verbose = True
 fnc_snapshot_flag = False
-# fnc_snapshot_interval = 1000
+fnc_snapshot_interval = 1000
 
 db_name = f"pendulum_one_hot_fnc_{int(time.time())}"
 
