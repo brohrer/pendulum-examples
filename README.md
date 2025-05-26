@@ -17,4 +17,8 @@ Run examples with
     uv run <script_name.py>
 
 Choose from
-- `q_learning_epsilon.py` 
+- `uv run buckettree_ziptie_fnc.py` 
+- `uv run one_hot_fnc.py` 
+- `uv run q_learning_curiosity.py` 
+- `uv run q_learning_epsilon.py` 
+- `uv run ziptie_fnc.py` 

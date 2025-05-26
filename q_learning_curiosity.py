@@ -1,11 +1,8 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "myrtle",
+#     "myrtle==1.0.11",
 # ]
-#
-# [tool.uv.sources]
-# myrtle = { path = "../myrtle", editable = true }
 # ///
 import os
 import time
@@ -21,7 +18,7 @@ discount_factor = 0.5
 learning_rate = 0.04
 
 n_loop_steps = 1e6
-n_episodes= 1
+n_episodes = 1
 loops_per_second = 8
 speedup = 8
 verbose = True
